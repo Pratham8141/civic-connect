@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivicConnect - Grievance Reporting Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="login-page">
+    <div class="container">
+        <div class="login-container">
+            <div class="login-header">
+                <h1>JAN SHIKAYAT PORTAL</h1>
+                <p>Report civic issues and make your city better</p>
+            </div>
+            
+            <div class="login-tabs">
+                <button class="tab-btn active" data-tab="citizen">Citizen Login</button>
+                <button class="tab-btn" data-tab="admin">Admin Login</button>
+            </div>
+            
+            <!-- Citizen Login -->
+            <div id="citizen-login" class="login-form active">
+                <h2>Citizen Login</h2>
+                <form id="citizenForm">
+                    <div class="form-group">
+                        <i class="fas fa-user"></i>
+                        <label for="citizenUsername" class="sr-only">Citizen Username</label>
+                        <input type="text" id="citizenUsername" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-lock"></i>
+                        <label for="citizenPassword" class="sr-only">Citizen Password</label>
+                        <input type="password" id="citizenPassword" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="login-btn" data-testid="button-citizen-login">
+                        <i class="fas fa-sign-in-alt"></i> Login as Citizen
+                    </button>
+                </form>
+                <div class="register-link">
+                    <p>New citizen? <a href="#" id="registerLink" data-testid="link-register">Register here</a></p>
+                </div>
+            </div>
+            
+            <!-- Admin Login -->
+            <div id="admin-login" class="login-form">
+                <h2>Admin Login</h2>
+                <form id="adminForm">
+                    <div class="form-group">
+                        <i class="fas fa-user-shield"></i>
+                        <label for="adminUsername" class="sr-only">Admin Username</label>
+                        <input type="text" id="adminUsername" placeholder="Admin Username" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-lock"></i>
+                        <label for="adminPassword" class="sr-only">Admin Password</label>
+                        <input type="password" id="adminPassword" placeholder="Admin Password" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-building"></i>
+                        <label for="adminDepartment" class="sr-only">Admin Department</label>
+                        <select id="adminDepartment" required>
+                            <option value="">Select Department</option>
+                            <option value="public-works">Public Works</option>
+                            <option value="sanitation">Sanitation</option>
+                            <option value="utilities">Utilities</option>
+                            <option value="transport">Transportation</option>
+                            <option value="health">Health</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="login-btn admin" data-testid="button-admin-login">
+                        <i class="fas fa-shield-alt"></i> Login as Admin
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <button type="button" class="close" data-testid="button-close-modal" aria-label="Close">&times;</button>
+            <h2>Register as Citizen</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <i class="fas fa-user"></i>
+                    <label for="regUsername" class="sr-only">Choose Username</label>
+                    <input type="text" id="regUsername" placeholder="Choose Username" required data-testid="input-username">
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-envelope"></i>
+                    <label for="regEmail" class="sr-only">Email Address</label>
+                    <input type="email" id="regEmail" placeholder="Email Address" required data-testid="input-email">
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-phone"></i>
+                    <label for="regPhone" class="sr-only">Phone Number</label>
+                    <input type="tel" id="regPhone" placeholder="Phone Number" 
+                           pattern="[0-9]{10}" required data-testid="input-phone">
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <label for="regMunicipality" class="sr-only">Select Municipality</label>
+                    <select id="regMunicipality" required data-testid="select-municipality">
+                        <option value="">Select Municipality</option>
+                        <option value="mumbai">Mumbai</option>
+                        <option value="delhi">Delhi</option>
+                        <option value="bangalore">Bangalore</option>
+                        <option value="pune">Pune</option>
+                        <option value="hyderabad">Hyderabad</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-lock"></i>
+                    <label for="regPassword" class="sr-only">Create Password</label>
+                    <input type="password" id="regPassword" placeholder="Create Password" required data-testid="input-password">
+                </div>
+                <button type="submit" class="login-btn" data-testid="button-register">
+                    <i class="fas fa-user-plus"></i> Register
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+
+</body>
+</html>

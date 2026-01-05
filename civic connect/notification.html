@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivicConnect - Notifications</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <img class="logo" src="1.png" style="width:60px;height:60px">
+                <div class="nav-tabs">
+                    <a href="index.html" class="nav-tab" data-tab="feed">Dashboard</a>
+                    <a href="index.html" class="nav-tab" data-tab="following">Following</a>
+                    <a href="reports.html" class="nav-tab">Reports</a>
+                    <a href="leaderboard.html" class="nav-tab">Leaderboard</a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search grievances..." data-testid="input-search">
+                </div>
+                <div class="theme-switcher">
+                    <select id="themeSelector" data-testid="select-theme">
+                        <option value="default">Default</option>
+                        <option value="dark">Dark</option>
+                        <option value="nature">Nature</option>
+                        <option value="ocean">Ocean</option>
+                        <option value="sunset">Sunset</option>
+                    </select>
+                </div>
+                <div class="user-menu">
+                    <img src="2.jpeg" alt="User Avatar" class="user-avatar" data-testid="img-avatar">
+                    <div class="dropdown">
+                        <button class="dropdown-btn" data-testid="button-user-menu">
+                            <span id="userName">Citizen</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="#" data-testid="link-profile"><i class="fas fa-user"></i> Profile</a>
+                            <a href="#" data-testid="link-settings"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="#" id="logoutBtn" data-testid="button-logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-menu">
+                <a href="index.html" class="menu-item" data-testid="link-home">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="reports.html" class="menu-item" data-testid="link-my-reports">
+                    <i class="fas fa-file-alt"></i> My Reports
+                </a>
+                <a href="notification.html" class="menu-item active" data-testid="link-notifications">
+                    <i class="fas fa-bell"></i> Notifications
+                </a>
+                <a href="reports.html" class="menu-item" data-testid="link-analytics">
+                    <i class="fas fa-chart-bar"></i> Analytics
+                </a>
+                <a href="leaderboard.html" class="menu-item" data-testid="link-leaderboard">
+                    <i class="fas fa-trophy"></i> Leaderboard
+                </a>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <h2><i class="fas fa-bell"></i> Notifications</h2>
+            <p>Stay updated on the status of your grievances.</p>
+
+            <div class="notification-list">
+                <!-- Example Notification -->
+                <div class="notification-item">
+                    <i class="fas fa-road"></i>
+                    <div class="notification-text">
+                        <h4>Pothole at Main Street</h4>
+                        <p>Status: <span class="acknowledged">Acknowledged</span> | <span class="pending">Pending Resolution</span></p>
+                        <span class="time">2h ago</span>
+                    </div>
+                </div>
+
+                <div class="notification-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <div class="notification-text">
+                        <h4>Streetlight not working</h4>
+                        <p>Status: <span class="acknowledged">Acknowledged</span> | <span class="resolved">Resolved</span></p>
+                        <span class="time">1d ago</span>
+                    </div>
+                </div>
+
+                <div class="notification-item">
+                    <i class="fas fa-water"></i>
+                    <div class="notification-text">
+                        <h4>Water Supply Issue - Sector 15</h4>
+                        <p>Status: <span class="not-ack">Not Acknowledged</span></p>
+                        <span class="time">3d ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <div class="stats-card">
+                <h3>Your Impact</h3>
+                <div class="stat-item">
+                    <span class="stat-number">12</span>
+                    <span class="stat-label">Reports Filed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">8</span>
+                    <span class="stat-label">Issues Resolved</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">245</span>
+                    <span class="stat-label">Upvotes Received</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivicConnect - Municipality Leaderboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <img class="logo" src="1.png" style="width:60px;height:60px">
+                <div class="nav-tabs">
+                    <a href="dashboard.html" class="nav-tab">Dashboard</a> 
+                    <a href="reports.html" class="nav-tab">Reports</a>
+                    <a href="#" class="nav-tab active">Leaderboard</a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="user-menu">
+                    <img src="2.jpeg" alt="User Avatar" class="user-avatar" data-testid="img-user-avatar">
+                    <div class="dropdown">
+                        <button class="dropdown-btn" data-testid="button-user-dropdown">
+                            <span id="userName">Citizen</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="dashboard.html" data-testid="link-dashboard"><i class="fas fa-home"></i> Dashboard</a>
+                            <a href="#" id="logoutBtn" data-testid="button-logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="leaderboard-container">
+        <div class="leaderboard-header">
+            <h1><i class="fas fa-trophy"></i> Municipality Leaderboard</h1>
+            <p>Public ranking of municipalities based on performance and citizen welfare</p>
+        </div>
+
+        <!-- Performance Metrics -->
+        <div class="metrics-section">
+            <h2>Performance Metrics</h2>
+            <div class="metrics-grid">
+                <div class="metric-card" data-testid="card-metric-response">
+                    <div class="metric-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Response Time</h3>
+                        <p>Average time to acknowledge and respond to citizen grievances</p>
+                    </div>
+                    <div class="metric-weight">Weight: 30%</div>
+                </div>
+                <div class="metric-card" data-testid="card-metric-resolution">
+                    <div class="metric-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Resolution Rate</h3>
+                        <p>Percentage of issues successfully resolved within timeframe</p>
+                    </div>
+                    <div class="metric-weight">Weight: 25%</div>
+                </div>
+                <div class="metric-card" data-testid="card-metric-satisfaction">
+                    <div class="metric-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Citizen Satisfaction</h3>
+                        <p>Average rating from citizens on resolved issues</p>
+                    </div>
+                    <div class="metric-weight">Weight: 20%</div>
+                </div>
+                <div class="metric-card" data-testid="card-metric-transparency">
+                    <div class="metric-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Transparency</h3>
+                        <p>Frequency of status updates and communication with citizens</p>
+                    </div>
+                    <div class="metric-weight">Weight: 15%</div>
+                </div>
+                <div class="metric-card" data-testid="card-metric-innovation">
+                    <div class="metric-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Innovation Score</h3>
+                        <p>Use of technology and innovative solutions for civic issues</p>
+                    </div>
+                    <div class="metric-weight">Weight: 10%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="leaderboard-filters">
+            <div class="filter-group">
+                <label>Time Period:</label>
+                <select id="periodFilter" data-testid="select-period">
+                    <option value="current">Current Month</option>
+                    <option value="quarter">Current Quarter</option>
+                    <option value="year">Current Year</option>
+                    <option value="all">All Time</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Category:</label>
+                <select id="categoryFilter" data-testid="select-category">
+                    <option value="overall">Overall Performance</option>
+                    <option value="infrastructure">Infrastructure</option>
+                    <option value="sanitation">Sanitation</option>
+                    <option value="utilities">Utilities</option>
+                    <option value="transport">Transportation</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Population Size:</label>
+                <select id="sizeFilter" data-testid="select-size">
+                    <option value="all">All Sizes</option>
+                    <option value="metro">Metro Cities (>5M)</option>
+                    <option value="large">Large Cities (1M-5M)</option>
+                    <option value="medium">Medium Cities (100K-1M)</option>
+                    <option value="small">Small Cities (<100K)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Top Performers -->
+        <div class="top-performers">
+            <h2>Top Performers</h2>
+            <div class="podium">
+                <div class="podium-item second" data-testid="podium-second">
+                    <div class="podium-rank">2</div>
+                    <div class="podium-medal silver">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="podium-municipality">
+                        <img src="https://via.placeholder.com/60" alt="Pune Logo" class="muni-logo">
+                        <h3>Pune Municipal Corporation</h3>
+                        <span class="muni-score">92.3</span>
+                    </div>
+                </div>
+                
+                <div class="podium-item first" data-testid="podium-first">
+                    <div class="podium-rank">1</div>
+                    <div class="podium-medal gold">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="podium-municipality">
+                        <img src="https://via.placeholder.com/80" alt="Surat Logo" class="muni-logo">
+                        <h3>Surat Municipal Corporation</h3>
+                        <span class="muni-score">95.7</span>
+                    </div>
+                    <div class="champion-badge">
+                        <i class="fas fa-trophy"></i> Champion
+                    </div>
+                </div>
+
+                <div class="podium-item third" data-testid="podium-third">
+                    <div class="podium-rank">3</div>
+                    <div class="podium-medal bronze">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="podium-municipality">
+                        <img src="https://via.placeholder.com/60" alt="Bangalore Logo" class="muni-logo">
+                        <h3>Bruhat Bengaluru Mahanagara Palike</h3>
+                        <span class="muni-score">89.1</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Full Leaderboard -->
+        <div class="full-leaderboard">
+            <h2>Complete Rankings</h2>
+            <div class="leaderboard-table">
+                <div class="table-header">
+                    <div class="col-rank">Rank</div>
+                    <div class="col-municipality">Municipality</div>
+                    <div class="col-score">Score</div>
+                    <div class="col-response">Response Time</div>
+                    <div class="col-resolution">Resolution Rate</div>
+                    <div class="col-satisfaction">Satisfaction</div>
+                    <div class="col-change">Change</div>
+                </div>
+
+                <div class="leaderboard-row rank-1" data-testid="row-rank-1">
+                    <div class="col-rank">
+                        <span class="rank-number">1</span>
+                        <i class="fas fa-crown rank-icon gold"></i>
+                    </div>
+                    <div class="col-municipality">
+                        <img src="https://via.placeholder.com/40" alt="Surat" class="muni-avatar">
+                        <div class="muni-info">
+                            <h4>Surat Municipal Corporation</h4>
+                            <span class="muni-state">Gujarat</span>
+                        </div>
+                    </div>
+                    <div class="col-score">
+                        <span class="score-value">95.7</span>
+                        <div class="score-bar">
+                            <div class="score-fill" style="width: 95.7%"></div>
+                        </div>
+                    </div>
+                    <div class="col-response">1.2 days</div>
+                    <div class="col-resolution">94%</div>
+                    <div class="col-satisfaction">4.8/5</div>
+                    <div class="col-change positive">+2.3</div>
+                </div>
+
+                <div class="leaderboard-row rank-2" data-testid="row-rank-2">
+                    <div class="col-rank">
+                        <span class="rank-number">2</span>
+                        <i class="fas fa-medal rank-icon silver"></i>
+                    </div>
+                    <div class="col-municipality">
+                        <img src="https://via.placeholder.com/40" alt="Pune" class="muni-avatar">
+                        <div class="muni-info">
+                            <h4>Pune Municipal Corporation</h4>
+                            <span class="muni-state">Maharashtra</span>
+                        </div>
+                    </div>
+                    <div class="col-score">
+                        <span class="score-value">92.3</span>
+                        <div class="score-bar">
+                            <div class="score-fill" style="width: 92.3%"></div>
+                        </div>
+                    </div>
+                    <div class="col-response">1.8 days</div>
+                    <div class="col-resolution">89%</div>
+                    <div class="col-satisfaction">4.6/5</div>
+                    <div class="col-change positive">+1.5</div>
+                </div>
+
+                <div class="leaderboard-row rank-3" data-testid="row-rank-3">
+                    <div class="col-rank">
+                        <span class="rank-number">3</span>
+                        <i class="fas fa-medal rank-icon bronze"></i>
+                    </div>
+                    <div class="col-municipality">
+                        <img src="https://via.placeholder.com/40" alt="Bangalore" class="muni-avatar">
+                        <div class="muni-info">
+                            <h4>BBMP Bangalore</h4>
+                            <span class="muni-state">Karnataka</span>
+                        </div>
+                    </div>
+                    <div class="col-score">
+                        <span class="score-value">89.1</span>
+                        <div class="score-bar">
+                            <div class="score-fill" style="width: 89.1%"></div>
+                        </div>
+                    </div>
+                    <div class="col-response">2.1 days</div>
+                    <div class="col-resolution">87%</div>
+                    <div class="col-satisfaction">4.4/5</div>
+                    <div class="col-change positive">+0.8</div>
+                </div>
+
+                <div class="leaderboard-row" data-testid="row-rank-4">
+                    <div class="col-rank">
+                        <span class="rank-number">4</span>
+                    </div>
+                    <div class="col-municipality">
+                        <img src="https://via.placeholder.com/40" alt="Ahmedabad" class="muni-avatar">
+                        <div class="muni-info">
+                            <h4>Ahmedabad Municipal Corporation</h4>
+                            <span class="muni-state">Gujarat</span>
+                        </div>
+                    </div>
+                    <div class="col-score">
+                        <span class="score-value">86.7</span>
+                        <div class="score-bar">
+                            <div class="score-fill" style="width: 86.7%"></div>
+                        </div>
+                    </div>
+                    <div class="col-response">2.3 days</div>
+                    <div class="col-resolution">83%</div>
+                    <div class="col-satisfaction">4.3/5</div>
+                    <div class="col-change positive">+1.2</div>
+                </div>
+
+                <div class="leaderboard-row" data-testid="row-rank-5">
+                    <div class="col-rank">
+                        <span class="rank-number">5</span>
+                    </div>
+                    <div class="col-municipality">
+                        <img src="https://via.placeholder.com/40" alt="Chennai" class="muni-avatar">
+                        <div class="muni-info">
+                            <h4>Greater Chennai Corporation</h4>
+                            <span class="muni-state">Tamil Nadu</span>
+                        </div>
+                    </div>
+                    <div class="col-score">
+                        <span class="score-value">84.2</span>
+                        <div class="score-bar">
+                            <div class="score-fill" style="width: 84.2%"></div>
+                        </div>
+                    </div>
+                    <div class="col-response">2.5 days</div>
+                    <div class="col-resolution">81%</div>
+                    <div class="col-satisfaction">4.1/5</div>
+                    <div class="col-change neutral">0.0</div>
+                </div>
+
+                <div class="leaderboard-row" data-testid="row-rank-6">
+                    <div class="col-rank">
+                        <span class="rank-number">6</span>
+                    </div>
+                    <div class="col-municipality">
+                        <img src="https://via.placeholder.com/40" alt="Hyderabad" class="muni-avatar">
+                        <div class="muni-info">
+                            <h4>GHMC Hyderabad</h4>
+                            <span class="muni-state">Telangana</span>
+                        </div>
+                    </div>
+                    <div class="col-score">
+                        <span class="score-value">82.8</span>
+                        <div class="score-bar">
+                            <div class="score-fill" style="width: 82.8%"></div>
+                        </div>
+                    </div>
+                    <div class="col-response">2.8 days</div>
+                    <div class="col-resolution">79%</div>
+                    <div class="col-satisfaction">4.0/5</div>
+                    <div class="col-change negative">-0.5</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Insights -->
+        <div class="insights-section">
+            <h2>Performance Insights</h2>
+            <div class="insights-grid">
+                <div class="insight-card" data-testid="card-insight-improvement">
+                    <div class="insight-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="insight-content">
+                        <h3>Most Improved</h3>
+                        <p><strong>Surat Municipal Corporation</strong> improved by 2.3 points this month through faster response times and better citizen engagement.</p>
+                    </div>
+                </div>
+                <div class="insight-card" data-testid="card-insight-innovation">
+                    <div class="insight-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="insight-content">
+                        <h3>Innovation Leader</h3>
+                        <p><strong>Pune Municipal Corporation</strong> leads in technology adoption with AI-powered issue categorization and mobile-first reporting.</p>
+                    </div>
+                </div>
+                <div class="insight-card" data-testid="card-insight-satisfaction">
+                    <div class="insight-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="insight-content">
+                        <h3>Citizen Favorite</h3>
+                        <p><strong>Surat Municipal Corporation</strong> maintains the highest citizen satisfaction rating at 4.8/5 stars.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize leaderboard page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadLeaderboardData();
+            setupLeaderboardFilters();
+        });
+    </script>
+</body>
+</html>

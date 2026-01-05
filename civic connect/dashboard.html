@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivicConnect - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <img class="logo" src="1.png" style="width:60px;height:60px">
+                <div class="nav-tabs">
+                    <a href="#" class="nav-tab active" data-tab="feed">Dashboard</a>
+                    <a href="reports.html" class="nav-tab">Reports</a>
+                    <a href="leaderboard.html" class="nav-tab">Leaderboard</a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search grievances..." data-testid="input-search">
+                </div>
+                <div class="theme-switcher">
+                    <select id="themeSelector" data-testid="select-theme">
+                        <option value="default">Default</option>
+                        <option value="dark">Dark</option>
+                        <option value="nature">Nature</option>
+                        <option value="ocean">Ocean</option>
+                        <option value="sunset">Sunset</option>
+                    </select>
+                </div>
+                <div class="user-menu">
+                    <img src="2.jpeg" alt="User Avatar" class="user-avatar" data-testid="img-avatar">
+                    <div class="dropdown">
+                        <button class="dropdown-btn" data-testid="button-user-menu">
+                            <span id="userName">Citizen</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="#" data-testid="link-profile"><i class="fas fa-user"></i> Profile</a>
+                            <a href="#" data-testid="link-settings"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="#" id="logoutBtn" data-testid="button-logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-menu">
+                <a href="#" class="menu-item active" data-testid="link-home">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="reports.html" class="menu-item" data-testid="link-my-reports">
+                    <i class="fas fa-file-alt"></i> My Reports
+                </a>
+                <a href="notification.html" class="menu-item" data-testid="link-notifications">
+                    <i class="fas fa-bell"></i> Notifications
+                </a>
+                <a href="reports.html" class="menu-item" data-testid="link-analytics">
+                    <i class="fas fa-chart-bar"></i> Analytics
+                </a>
+                <a href="leaderboard.html" class="menu-item" data-testid="link-leaderboard">
+                    <i class="fas fa-trophy"></i> Leaderboard
+                </a>
+            </div>
+            
+            <div class="trending-topics">
+                <h3>Trending in Your Area</h3>
+                <div class="trending-item">
+                    <span class="hashtag">#PotholeAlert</span>
+                    <span class="count">2.3K reports</span>
+                </div>
+                <div class="trending-item">
+                    <span class="hashtag">#StreetLights</span>
+                    <span class="count">1.8K reports</span>
+                </div>
+                <div class="trending-item">
+                    <span class="hashtag">#WaterSupply</span>
+                    <span class="count">1.2K reports</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content">
+            <!-- Post Grievance -->
+            <div class="post-box">
+                <div class="post-header">
+                    <img src="2.jpeg" alt="User Avatar" class="user-avatar">
+                    <input type="text" placeholder="What's happening in your area?" class="post-input" id="postInput" >
+                </div>
+                <div class="post-options" id="postOptions" style="display: none;">
+                    <div class="form-group">
+                        <label>Issue Category:</label>
+                        <select id="issueCategory" data-testid="select-category">
+                            <option value="infrastructure">Infrastructure</option>
+                            <option value="sanitation">Sanitation</option>
+                            <option value="utilities">Utilities</option>
+                            <option value="transport">Transportation</option>
+                            <option value="health">Health & Safety</option>
+                            <option value="environment">Environment</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Municipality:</label>
+                        <select id="postMunicipality" data-testid="select-post-municipality">
+                            <option value="mumbai">Mumbai</option>
+                            <option value="delhi">Delhi</option>
+                            <option value="bangalore">Bangalore</option>
+                            <option value="pune">Pune</option>
+                            <option value="hyderabad">Hyderabad</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Location:</label>
+                        <input type="text" id="issueLocation" placeholder="Enter location details" data-testid="input-location">
+                    </div>
+                    <div class="form-group">
+                        <label>Description:</label>
+                        <textarea id="issueDescription" placeholder="Describe the issue in detail..." data-testid="textarea-description"></textarea>
+                    </div>
+                    <div class="post-actions">
+                        <div class="action-buttons">
+                            <button class="action-btn" id="photoBtn" data-testid="button-photo">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                            <button class="action-btn" id="locationBtn" data-testid="button-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </button>
+                            <button class="action-btn" id="urgentBtn" data-testid="button-urgent">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </button>
+                        </div>
+                        <button class="post-btn" id="submitPost" data-testid="button-submit-post">Post Grievance</button>
+                    </div>
+                </div>
+                <input type="file" id="photoInput" accept="image/*" style="display: none;">
+                <span id="postCategoryLabel" class="post-category-label"></span>
+
+            </div>
+
+            <!-- Filter Options -->
+            <div class="filter-container">
+                <div class="filter-header">
+                    <h3><i class="fas fa-filter"></i> Filter & Sort Grievances</h3>
+                </div>
+                <div class="filter-options">
+                    <div class="filter-group">
+                        <label for="sortBy">Sort by:</label>
+                        <select id="sortBy" data-testid="select-sort">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="upvotes-high">Highest Upvotes</option>
+                            <option value="upvotes-low">Lowest Upvotes</option>
+                            <option value="urgent">Urgent First</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filterCategory">Category:</label>
+                        <select id="filterCategory" data-testid="select-filter-category">
+                            <option value="all">All Categories</option>
+                            <option value="infrastructure">Infrastructure</option>
+                            <option value="sanitation">Sanitation</option>
+                            <option value="utilities">Utilities</option>
+                            <option value="transport">Transportation</option>
+                            <option value="health">Health & Safety</option>
+                            <option value="environment">Environment</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filterMunicipality">Municipality:</label>
+                        <select id="filterMunicipality" data-testid="select-filter-municipality">
+                            <option value="all">All Municipalities</option>
+                            <option value="mumbai">Mumbai</option>
+                            <option value="delhi">Delhi</option>
+                            <option value="bangalore">Bangalore</option>
+                            <option value="pune">Pune</option>
+                            <option value="hyderabad">Hyderabad</option>
+                        </select>
+                    </div> 
+                    <div class="filter-group">
+                        <label for="filterStatus">Status:</label>
+                        <select id="filterStatus" data-testid="select-filter-status">
+                            <option value="all">All Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="progress">In Progress</option>
+                            <option value="resolved">Resolved</option>
+                            <option value="urgent">Urgent</option>
+                        </select>
+                    </div>
+                    <div class="filter-group location-search">
+                        <label for="locationSearch">Search Location:</label>
+                        <div class="search-input-group">
+                            <input type="text" id="locationSearch" placeholder="Search by location..." data-testid="input-location-search">
+                            <button id="clearLocation" class="clear-btn" data-testid="button-clear-location">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-actions">
+                    <button id="resetFilters" class="reset-btn" data-testid="button-reset-filters">
+                        <i class="fas fa-undo"></i> Reset All Filters
+                    </button>
+                    <div class="result-count" id="resultCount">
+                        Showing <span id="resultNumber">0</span> grievances
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grievance Feed -->
+            <div class="feed" id="grievanceFeed">
+                <!-- Grievance items will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <div class="stats-card">
+                <h3>Your Impact</h3>
+                <div class="stat-item">
+                    <span class="stat-number">12</span>
+                    <span class="stat-label">Reports Filed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">8</span>
+                    <span class="stat-label">Issues Resolved</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">245</span>
+                    <span class="stat-label">Upvotes Received</span>
+                </div>
+            </div>
+
+            <div class="news-widget">
+                <h3>Latest Updates</h3>
+                <div class="news-item">
+                    <h4>Road Repair Initiative</h4>
+                    <p>Mumbai municipality launches major pothole repair drive...</p>
+                    <span class="news-time">2h ago</span>
+                </div>
+                <div class="news-item">
+                    <h4>Water Quality Improvement</h4>
+                    <p>New filtration systems installed in 15 areas...</p>
+                    <span class="news-time">4h ago</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comment Modal -->
+    <div id="commentModal" class="modal">
+        <div class="modal-content comment-modal">
+            <span class="close" data-testid="button-close-comment">&times;</span>
+            <div class="modal-header">
+                <h3>Comments</h3>
+            </div>
+            <div class="comment-section" id="commentSection">
+                <!-- Comments will be populated by JavaScript -->
+            </div>
+            <div class="add-comment">
+                <textarea id="newComment" placeholder="Add your comment..." data-testid="textarea-comment"></textarea>
+                <button id="addCommentBtn" data-testid="button-add-comment">Post Comment</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Media Escalation Modal -->
+    <div id="mediaModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-testid="button-close-media">&times;</span>
+            <div class="modal-header">
+                <h3><i class="fas fa-newspaper"></i> Media Escalation</h3>
+                <p>This issue has been pending for too long. Contact local media for coverage.</p>
+            </div>
+            <div class="media-contacts">
+                <div class="media-item">
+                    <i class="fas fa-tv"></i>
+                    <div>
+                        <h4>Local News Channel</h4>
+                        <p>Contact: news@localtv.com | +91-9876543210</p>
+                        <button class="media-btn" data-testid="button-contact-tv">Contact</button>
+                    </div>
+                </div>
+                <div class="media-item">
+                    <i class="fas fa-newspaper"></i>
+                    <div>
+                        <h4>City Times</h4>
+                        <p>Contact: editor@citytimes.com | +91-9876543211</p>
+                        <button class="media-btn" data-testid="button-contact-newspaper">Contact</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

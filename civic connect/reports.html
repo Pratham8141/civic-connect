@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"="width=device-width, initial-scale=1.0">
+    <title>CivicConnect - Reports & Analytics</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <img class="logo" src="1.png" style="width:60px;height:60px;">
+                <div class="nav-tabs">
+                    <a href="dashboard.html" class="nav-tab">Dashboard</a>
+                    <a href="#" class="nav-tab active">Reports</a>
+                    <a href="leaderboard.html" class="nav-tab">Leaderboard</a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="user-menu">
+                    <img src="2.jpeg" alt="User Avatar" class="user-avatar" data-testid="img-user-avatar">
+                    <div class="dropdown">
+                        <button class="dropdown-btn" data-testid="button-user-dropdown">
+                            <span id="userName">Citizen</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="dashboard.html" data-testid="link-dashboard"><i class="fas fa-home"></i> Dashboard</a>
+                            <a href="#" id="logoutBtn" data-testid="button-logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="reports-container">
+        <div class="reports-header">
+            <h1>Reports & Analytics</h1>
+            <p>Discover the most demanded issues and track municipal performance</p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="filter-section">
+            <div class="filter-group">
+                <label>Filter by Area:</label>
+                <select id="areaFilter" data-testid="select-area">
+                    <option value="all">All Areas</option>
+                    <option value="mumbai">Mumbai</option>
+                    <option value="delhi">Delhi</option>
+                    <option value="bangalore">Bangalore</option>
+                    <option value="pune">Pune</option>
+                    <option value="hyderabad">Hyderabad</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Time Period:</label>
+                <select id="timeFilter" data-testid="select-time">
+                    <option value="week">Last Week</option>
+                    <option value="month">Last Month</option>
+                    <option value="quarter">Last Quarter</option>
+                    <option value="year">Last Year</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Issue Type:</label>
+                <select id="typeFilter" data-testid="select-type">
+                    <option value="all">All Types</option>
+                    <option value="infrastructure">Infrastructure</option>
+                    <option value="sanitation">Sanitation</option>
+                    <option value="utilities">Utilities</option>
+                    <option value="transport">Transportation</option>
+                    <option value="health">Health</option>
+                    <option value="environment">Environment</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="summary-cards">
+            <div class="summary-card trending" data-testid="card-trending">
+                <div class="card-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Most Reported</h3>
+                    <span class="card-number">Potholes</span>
+                    <span class="card-subtitle">2,347 reports this month</span>
+                </div>
+            </div>
+            <div class="summary-card urgent" data-testid="card-urgent-summary">
+                <div class="card-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Critical Issues</h3>
+                    <span class="card-number">23</span>
+                    <span class="card-subtitle">Requiring immediate attention</span>
+                </div>
+            </div>
+            <div class="summary-card resolved" data-testid="card-resolved-summary">
+                <div class="card-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Resolution Rate</h3>
+                    <span class="card-number">78%</span>
+                    <span class="card-subtitle">Issues resolved this month</span>
+                </div>
+            </div>
+            <div class="summary-card participation" data-testid="card-participation">
+                <div class="card-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Citizen Participation</h3>
+                    <span class="card-number">15,432</span>
+                    <span class="card-subtitle">Active reporters</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reports Grid -->
+        <div class="reports-grid">
+            <!-- Most Demanded Issues -->
+            <div class="report-card">
+                <div class="report-header">
+                    <h3><i class="fas fa-chart-bar"></i> Most Demanded Issues</h3>
+                    <button class="export-btn" data-testid="button-export-demanded">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                </div>
+                <div class="report-content">
+                    <div class="demand-list">
+                        <div class="demand-item" data-testid="item-demand-1">
+                            <div class="demand-info">
+                                <span class="demand-type">Road Repairs</span>
+                                <span class="demand-area">Mumbai - Andheri</span>
+                            </div>
+                            <div class="demand-stats">
+                                <span class="upvotes">1,234 upvotes</span>
+                                <span class="status pending">Pending</span>
+                            </div>
+                        </div>
+                        <div class="demand-item" data-testid="item-demand-2">
+                            <div class="demand-info">
+                                <span class="demand-type">Street Lighting</span>
+                                <span class="demand-area">Delhi - CP</span>
+                            </div>
+                            <div class="demand-stats">
+                                <span class="upvotes">987 upvotes</span>
+                                <span class="status progress">In Progress</span>
+                            </div>
+                        </div>
+                        <div class="demand-item" data-testid="item-demand-3">
+                            <div class="demand-info">
+                                <span class="demand-type">Water Supply</span>
+                                <span class="demand-area">Bangalore - Koramangala</span>
+                            </div>
+                            <div class="demand-stats">
+                                <span class="upvotes">756 upvotes</span>
+                                <span class="status urgent">Urgent</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Area-wise Analysis -->
+            <div class="report-card">
+                <div class="report-header">
+                    <h3><i class="fas fa-map"></i> Area-wise Analysis</h3>
+                    <div class="view-toggle">
+                        <button class="toggle-btn active" data-view="list" data-testid="button-list-view">List</button>
+                        <button class="toggle-btn" data-view="map" data-testid="button-map-view">Map</button>
+                    </div>
+                </div>
+                <div class="report-content">
+                    <div class="area-stats">
+                        <div class="area-item" data-testid="item-area-mumbai">
+                            <div class="area-info">
+                                <h4>Mumbai</h4>
+                                <span class="area-population">Population: 12.4M</span>
+                            </div>
+                            <div class="area-metrics">
+                                <div class="metric">
+                                    <span class="metric-label">Active Issues</span>
+                                    <span class="metric-value">342</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Response Time</span>
+                                    <span class="metric-value">3.2 days</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="area-item" data-testid="item-area-delhi">
+                            <div class="area-info">
+                                <h4>Delhi</h4>
+                                <span class="area-population">Population: 11.0M</span>
+                            </div>
+                            <div class="area-metrics">
+                                <div class="metric">
+                                    <span class="metric-label">Active Issues</span>
+                                    <span class="metric-value">298</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Response Time</span>
+                                    <span class="metric-value">2.8 days</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weather Impact -->
+            <div class="report-card">
+                <div class="report-header">
+                    <h3><i class="fas fa-cloud-rain"></i> Weather Impact</h3>
+                </div>
+                <div class="report-content">
+                    <div class="weather-correlation">
+                        <div class="weather-item" data-testid="item-weather-monsoon">
+                            <div class="weather-icon">
+                                <i class="fas fa-cloud-rain"></i>
+                            </div>
+                            <div class="weather-data">
+                                <h4>Monsoon Season</h4>
+                                <p>200% increase in drainage issues</p>
+                                <span class="weather-trend">↑ Trending up</span>
+                            </div>
+                        </div>
+                        <div class="weather-item" data-testid="item-weather-summer">
+                            <div class="weather-icon">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <div class="weather-data">
+                                <h4>Summer</h4>
+                                <p>150% increase in water supply complaints</p>
+                                <span class="weather-trend">↑ Trending up</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Damage Assessment -->
+            <div class="report-card">
+                <div class="report-header">
+                    <h3><i class="fas fa-exclamation-circle"></i> Damage Assessment</h3>
+                </div>
+                <div class="report-content">
+                    <div class="damage-categories">
+                        <div class="damage-item severe" data-testid="item-damage-severe">
+                            <div class="damage-level">
+                                <span class="level-indicator"></span>
+                                <span class="level-text">Severe</span>
+                            </div>
+                            <div class="damage-count">15 issues</div>
+                            <div class="damage-cost">Est. ₹45L repair cost</div>
+                        </div>
+                        <div class="damage-item moderate" data-testid="item-damage-moderate">
+                            <div class="damage-level">
+                                <span class="level-indicator"></span>
+                                <span class="level-text">Moderate</span>
+                            </div>
+                            <div class="damage-count">67 issues</div>
+                            <div class="damage-cost">Est. ₹12L repair cost</div>
+                        </div>
+                        <div class="damage-item minor" data-testid="item-damage-minor">
+                            <div class="damage-level">
+                                <span class="level-indicator"></span>
+                                <span class="level-text">Minor</span>
+                            </div>
+                            <div class="damage-count">234 issues</div>
+                            <div class="damage-cost">Est. ₹3.5L repair cost</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Trends -->
+            <div class="report-card full-width">
+                <div class="report-header">
+                    <h3><i class="fas fa-chart-line"></i> Performance Trends</h3>
+                    <div class="trend-controls">
+                        <button class="trend-btn active" data-period="week" data-testid="button-trend-week">Week</button>
+                        <button class="trend-btn" data-period="month" data-testid="button-trend-month">Month</button>
+                        <button class="trend-btn" data-period="quarter" data-testid="button-trend-quarter">Quarter</button>
+                    </div>
+                </div>
+                <div class="report-content">
+                    <div class="trend-chart" data-testid="chart-trends">
+                        <div class="chart-placeholder">
+                            <div class="trend-line">
+                                <span>Resolution Rate: 78% ↑</span>
+                                <span>Average Response Time: 2.5 days ↓</span>
+                                <span>Citizen Satisfaction: 4.2/5 ↑</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize reports page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadReportsData();
+            setupReportFilters();
+        });
+    </script>
+</body>
+</html>

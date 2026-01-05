@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivicConnect - Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="admin-body">
+    <!-- Admin Navigation -->
+    <nav class="admin-navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <img class="logo" src="1.png" style="width:60px;height:60px">
+            </div>
+            <div class="nav-right">
+                <div class="admin-info">
+                    <i class="fas fa-user-shield"></i>
+                    <span id="adminName">Admin</span>
+                    <span id="adminDept" class="dept-badge">Public Works</span>
+                </div>
+                <button id="adminLogout" class="logout-btn" data-testid="button-admin-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <!-- Admin Sidebar -->
+        <div class="admin-sidebar">
+            <div class="sidebar-menu">
+                <a href="#" class="admin-menu-item active" data-section="dashboard" data-testid="link-admin-dashboard">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a href="#" class="admin-menu-item" data-section="pending" data-testid="link-pending">
+                    <i class="fas fa-clock"></i> Pending Issues
+                    <span class="badge" id="pendingCount">23</span>
+                </a>
+                <a href="#" class="admin-menu-item" data-section="assigned" data-testid="link-assigned">
+                    <i class="fas fa-tasks"></i> Assigned Work
+                </a>
+                <a href="#" class="admin-menu-item" data-section="resolved" data-testid="link-resolved">
+                    <i class="fas fa-check-circle"></i> Resolved Issues
+                </a>
+                <a href="#" class="admin-menu-item" data-section="departments" data-testid="link-departments">
+                    <i class="fas fa-building"></i> Departments
+                </a>
+                <a href="#" class="admin-menu-item" data-section="analytics" data-testid="link-admin-analytics">
+                    <i class="fas fa-chart-line"></i> Analytics
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Admin Content -->
+        <div class="admin-content">
+            <!-- Dashboard Section -->
+            <div id="dashboard-section" class="admin-section active">
+                <div class="section-header">
+                    <h2>Dashboard Overview</h2>
+                    <div class="date-filter">
+                        <select id="timeFilter" data-testid="select-time-filter">
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month">This Month</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card urgent" data-testid="card-urgent-issues">
+                        <div class="stat-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Urgent Issues</h3>
+                            <span class="stat-number">8</span>
+                        </div>
+                    </div>
+                    <div class="stat-card pending" data-testid="card-pending-issues">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Pending</h3>
+                            <span class="stat-number">23</span>
+                        </div>
+                    </div>
+                    <div class="stat-card progress" data-testid="card-in-progress">
+                        <div class="stat-icon">
+                            <i class="fas fa-spinner"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>In Progress</h3>
+                            <span class="stat-number">15</span>
+                        </div>
+                    </div>
+                    <div class="stat-card resolved" data-testid="card-resolved">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Resolved</h3>
+                            <span class="stat-number">142</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-section">
+                    <div class="chart-card">
+                        <h3>Issues by Category</h3>
+                        <div class="chart-placeholder" data-testid="chart-categories">
+                            <div class="bar-chart">
+                                <div class="bar" style="height: 80%">
+                                    <span class="bar-label">Infrastructure</span>
+                                    <span class="bar-value">45</span>
+                                </div>
+                                <div class="bar" style="height: 60%">
+                                    <span class="bar-label">Sanitation</span>
+                                    <span class="bar-value">32</span>
+                                </div>
+                                <div class="bar" style="height: 40%">
+                                    <span class="bar-label">Utilities</span>
+                                    <span class="bar-value">23</span>
+                                </div>
+                                <div class="bar" style="height: 30%">
+                                    <span class="bar-label">Transport</span>
+                                    <span class="bar-value">18</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Response Time Trends</h3>
+                        <div class="chart-placeholder" data-testid="chart-response-time">
+                            <div class="line-chart">
+                                <span>Average response time: 2.5 days</span>
+                                <span>Target: 2 days</span>
+                                <span>Improvement: +15% this week</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending Issues Section -->
+            <div id="pending-section" class="admin-section">
+                <div class="section-header">
+                    <h2>Pending Issues</h2>
+                    <div class="section-filters">
+                        <select id="priorityFilter" data-testid="select-priority">
+                            <option value="all">All Priority</option>
+                            <option value="urgent">Urgent</option>
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                        <select id="categoryFilter" data-testid="select-category-filter">
+                            <option value="all">All Categories</option>
+                            <option value="infrastructure">Infrastructure</option>
+                            <option value="sanitation">Sanitation</option>
+                            <option value="utilities">Utilities</option>
+                            <option value="transport">Transport</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="issues-list" id="pendingIssuesList">
+                    <!-- Pending issues will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Assigned Work Section -->
+            <div id="assigned-section" class="admin-section">
+                <div class="section-header">
+                    <h2>Work Assignment</h2>
+                    <button class="assign-btn" id="bulkAssignBtn" data-testid="button-bulk-assign">
+                        <i class="fas fa-users"></i> Bulk Assign
+                    </button>
+                </div>
+
+                <div class="department-tabs">
+                    <button class="dept-tab active" data-dept="all" data-testid="tab-all-departments">All Departments</button>
+                    <button class="dept-tab" data-dept="public-works" data-testid="tab-public-works">Public Works</button>
+                    <button class="dept-tab" data-dept="sanitation" data-testid="tab-sanitation">Sanitation</button>
+                    <button class="dept-tab" data-dept="utilities" data-testid="tab-utilities">Utilities</button>
+                    <button class="dept-tab" data-dept="transport" data-testid="tab-transport">Transport</button>
+                </div>
+
+                <div class="assigned-work-grid" id="assignedWorkGrid">
+                    <!-- Assigned work items will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Departments Section -->
+            <div id="departments-section" class="admin-section">
+                <div class="section-header">
+                    <h2>Department Management</h2>
+                </div>
+                
+                <div class="departments-grid">
+                    <div class="dept-card" data-testid="card-dept-public-works">
+                        <div class="dept-header">
+                            <h3><i class="fas fa-hard-hat"></i> Public Works</h3>
+                            <span class="workload">Heavy</span>
+                        </div>
+                        <div class="dept-stats">
+                            <div class="dept-stat">
+                                <span class="number">15</span>
+                                <span class="label">Active Tasks</span>
+                            </div>
+                            <div class="dept-stat">
+                                <span class="number">3.2</span>
+                                <span class="label">Avg Days</span>
+                            </div>
+                        </div>
+                        <div class="dept-actions">
+                            <button class="assign-to-dept" data-dept="public-works" data-testid="button-assign-public-works">Assign Work</button>
+                        </div>
+                    </div>
+
+                    <div class="dept-card" data-testid="card-dept-sanitation">
+                        <div class="dept-header">
+                            <h3><i class="fas fa-broom"></i> Sanitation</h3>
+                            <span class="workload moderate">Moderate</span>
+                        </div>
+                        <div class="dept-stats">
+                            <div class="dept-stat">
+                                <span class="number">8</span>
+                                <span class="label">Active Tasks</span>
+                            </div>
+                            <div class="dept-stat">
+                                <span class="number">2.1</span>
+                                <span class="label">Avg Days</span>
+                            </div>
+                        </div>
+                        <div class="dept-actions">
+                            <button class="assign-to-dept" data-dept="sanitation" data-testid="button-assign-sanitation">Assign Work</button>
+                        </div>
+                    </div>
+
+                    <div class="dept-card" data-testid="card-dept-utilities">
+                        <div class="dept-header">
+                            <h3><i class="fas fa-bolt"></i> Utilities</h3>
+                            <span class="workload light">Light</span>
+                        </div>
+                        <div class="dept-stats">
+                            <div class="dept-stat">
+                                <span class="number">5</span>
+                                <span class="label">Active Tasks</span>
+                            </div>
+                            <div class="dept-stat">
+                                <span class="number">1.8</span>
+                                <span class="label">Avg Days</span>
+                            </div>
+                        </div>
+                        <div class="dept-actions">
+                            <button class="assign-to-dept" data-dept="utilities" data-testid="button-assign-utilities">Assign Work</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assignment Modal -->
+    <div id="assignmentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-testid="button-close-assignment">&times;</span>
+            <h3>Assign Work to Department</h3>
+            <form id="assignmentForm">
+                <div class="form-group">
+                    <label>Select Department:</label>
+                    <select id="assignDepartment" data-testid="select-assign-department">
+                        <option value="public-works">Public Works</option>
+                        <option value="sanitation">Sanitation</option>
+                        <option value="utilities">Utilities</option>
+                        <option value="transport">Transportation</option>
+                        <option value="health">Health</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Priority Level:</label>
+                    <select id="assignPriority" data-testid="select-assign-priority">
+                        <option value="urgent">Urgent</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Expected Completion:</label>
+                    <input type="date" id="assignDeadline" data-testid="input-deadline">
+                </div>
+                <div class="form-group">
+                    <label>Additional Notes:</label>
+                    <textarea id="assignNotes" placeholder="Add any special instructions..." data-testid="textarea-notes"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="cancel-btn" data-testid="button-cancel-assign">Cancel</button>
+                    <button type="submit" class="assign-btn" data-testid="button-confirm-assign">Assign Work</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+
+    <script>
+        // Initialize admin dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAdminData();
+            setupAdminEventListeners();
+        });
+    </script>
+</body>
+</html>
